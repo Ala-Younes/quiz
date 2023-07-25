@@ -3,15 +3,22 @@ import Button from "./Button";
 
 interface QuestionsListProps {
   question: Question;
+  onNextQuestion: (index: number) => void;
 }
 
-function QuestionsList({ question }: QuestionsListProps) {
+function QuestionsList({ question, onNextQuestion }: QuestionsListProps) {
+
+  const handleClick = (index: number) => {
+    onNextQuestion(index);
+  };
+  
   return (
     <div className="flex flex-col justify-between gap-6 w-full">
-      <Button>{question.answerOptions[0].answerText}</Button>
-      <Button>{question.answerOptions[1].answerText}</Button>
-      <Button>{question.answerOptions[2].answerText}</Button>
-      <Button>{question.answerOptions[3].answerText}</Button>
+      {question.answerOptions.map((answerOption, index) => (
+        <Button onClick={() => handleClick(index)} key={index}>
+          {answerOption.answerText}
+        </Button>
+      ))}
     </div>
   );
 }

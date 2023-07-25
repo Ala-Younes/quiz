@@ -1,9 +1,15 @@
-interface ButtonProps {
+import { ButtonHTMLAttributes } from "react";
+
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: string;
 }
 
-function Button({ children }: ButtonProps) {
-  return <button className="button">{children}</button>;
+function Button({ children, ...rest }: ButtonProps) {
+  return (
+    <button {...rest} className="button">
+      {children}
+    </button>
+  );
 }
 
 export default Button;

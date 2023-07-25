@@ -1,0 +1,19 @@
+# Ignore Node.js related files and directories
+node_modules/
+package-lock.json
+yarn.lock
+
+# Ignore build output
+/dist/
+
+# Ignore environment files (if applicable)
+.env.local
+.env.production.local
+.env.development.local
+
+# Ignore editor-specific files
+.vscode/
+.idea/
+*.log
+
+# Ignore any other files you don't want to commit

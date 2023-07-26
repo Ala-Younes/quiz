@@ -3,5 +3,5 @@ body {
 }
 
 .button {
-  @apply flex outline-none text-xl p-3 justify-start items-center cursor-pointer text-white rounded-full ring-4 ring-accent-ring hover:bg-accent-blueHover transition-all duration-200;
+  @apply flex justify-start items-center ring-4 ring-accent-ring hover:bg-accent-blueHover transition-all duration-200 outline-none text-xl py-4 px-4 cursor-pointer text-white;
 }

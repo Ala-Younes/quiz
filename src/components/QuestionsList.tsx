@@ -14,7 +14,12 @@ function QuestionsList({ question, onNextQuestion }: QuestionsListProps) {
   return (
     <div className="flex flex-col justify-between gap-6 w-full">
       {question.answerOptions.map(({ answerText, isCorrect }, index) => (
-        <Button onClick={() => handleClick(isCorrect)} key={index}>
+        <Button
+          rounded
+          position="start"
+          onClick={() => handleClick(isCorrect)}
+          key={index}
+        >
           {answerText}
         </Button>
       ))}

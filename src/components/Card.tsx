@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Question } from "../data";
 import QuestionsList from "./QuestionsList";
+import Button from "./Button";
 
 interface CardProps {
   questions: Question[];
@@ -12,7 +13,7 @@ function Card({ questions, initialValue = 0 }: CardProps) {
   const [score, setScore] = useState(0);
 
   const isQuizFinished = () => {
-    return questionIndex === questions.length - 1;
+    return questionIndex === questions.length;
   };
 
   const handleClick = (isCorrect: boolean) => {
@@ -21,22 +22,26 @@ function Card({ questions, initialValue = 0 }: CardProps) {
       isQuizFinished() ? initialValue : currIndex + 1
     );
   };
+
   const handleReset = () => {
     setQuestionIndex(0);
+    setScore(0);
   };
+
   return (
     <div className="bg-primary-darkBlue rounded-2xl mx-auto p-8 shadow-black shadow-2xl w-[40rem]">
       {isQuizFinished() ? (
-        <div className="flex flex-col justify-center items-center h-72 ">
-          <h1 className="text-white text-3xl">
+        <div className="flex flex-col justify-center items-center h-72 gap-12 ">
+          <h1
+            className={
+              score === questions.length ? "text-green-500" : "text-red-500"
+            }
+          >
             You scored {score} out of {questions.length}
           </h1>
-          <button
-            onClick={handleReset}
-            className="border outline-none border-violet-700 bg-blue-500 rounded-xl mt-16 py-4 px-4 hover:bg-accent-blueHover"
-          >
+          <Button onClick={handleReset} rounded full>
             Reset
-          </button>
+          </Button>
         </div>
       ) : (
         <div className="flex gap-8">
@@ -44,8 +49,8 @@ function Card({ questions, initialValue = 0 }: CardProps) {
             <h1 className="text-4xl">
               Question {questionIndex + 1}/<span className="text-2xl">4</span>
             </h1>
-            <h3 className="text-2xl">
-              {questions[questionIndex]?.questionText}
+            <h3>
+              {questions[questionIndex]?.questionText || "No question text"}
             </h3>
           </div>
           <QuestionsList
